@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LexiGuide — AI Legal Assistant</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <div class="ambient"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">LG</div>
+      <div>
+        <div class="title">LexiGuide</div>
+        <div class="subtitle">AI Legal Assistant</div>
+      </div>
+    </div>
+    <div class="status">
+      <span class="dot"></span>
+      <span>Private Workspace</span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <section class="panel">
+        <h3>Active Matters</h3>
+        <div class="case">
+          <div class="case-title">Vendor Agreement Review</div>
+          <div class="case-meta">Risk: Medium · Stage: Draft</div>
+        </div>
+        <div class="case">
+          <div class="case-title">Tenant Rights Inquiry</div>
+          <div class="case-meta">Risk: Low · Stage: Research</div>
+        </div>
+        <div class="case new">+ New Matter</div>
+      </section>
+
+      <section class="panel">
+        <h3>Controls</h3>
+        <label class="field">
+          Jurisdiction
+          <select id="jurisdiction">
+            <option>United States (General)</option>
+            <option>California</option>
+            <option>New York</option>
+            <option>Texas</option>
+            <option>Florida</option>
+            <option>Other / Not Sure</option>
+          </select>
+        </label>
+        <label class="field">
+          Tone
+          <select id="tone">
+            <option>Practical & Direct</option>
+            <option>Neutral</option>
+            <option>Empathetic</option>
+            <option>Formal</option>
+          </select>
+        </label>
+        <label class="field">
+          Output
+          <select id="output">
+            <option>Checklist + Summary</option>
+            <option>Detailed Analysis</option>
+            <option>Draft Language</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="panel">
+        <h3>Quick Starters</h3>
+        <div class="chips" id="starters">
+          <button class="chip" data-prompt="Review this contract for risky clauses.">Contract review</button>
+          <button class="chip" data-prompt="What are my options if my landlord refuses repairs?">Tenant rights</button>
+          <button class="chip" data-prompt="Draft a polite demand letter requesting payment.">Demand letter</button>
+          <button class="chip" data-prompt="Summarize obligations in this NDA.">NDA summary</button>
+        </div>
+      </section>
+    </aside>
+
+    <section class="chat">
+      <div class="chat-header">
+        <div>
+          <div class="chat-title">Legal Workspace</div>
+          <div class="chat-subtitle">Not a law firm · For informational use only</div>
+        </div>
+        <div class="badges">
+          <span class="badge">Citations: Off</span>
+          <span class="badge">Mode: Offline</span>
+        </div>
+      </div>
+
+      <div class="messages" id="messages" aria-live="polite"></div>
+
+      <div class="insights">
+        <div class="insight">
+          <div class="insight-title">Risk Lens</div>
+          <div class="insight-body" id="riskLens">Awaiting context</div>
+        </div>
+        <div class="insight">
+          <div class="insight-title">Next Steps</div>
+          <div class="insight-body" id="nextSteps">Add details or paste a clause</div>
+        </div>
+      </div>
+
+      <form class="composer" id="composer">
+        <div class="input-wrap">
+          <textarea id="input" rows="3" placeholder="Describe your situation or paste a clause..."></textarea>
+          <div class="helper">No attorney-client relationship. Verify with a licensed attorney.</div>
+        </div>
+        <div class="actions">
+          <button type="button" id="clear" class="secondary">Clear</button>
+          <button type="submit" class="primary">Send</button>
+        </div>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
