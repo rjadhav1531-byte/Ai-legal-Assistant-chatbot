@@ -1,0 +1,2212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#138808">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>Indian AI Legal Assistant - Complete Legal Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #FF9933 0%, #FFFFFF 50%, #138808 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            touch-action: pan-y;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #138808;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+
+        .logo h1 {
+            color: #138808;
+            font-size: 1.8rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .logo-subtitle {
+            color: #FF9933;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .tagline {
+            color: #666;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .container {
+            flex: 1;
+            max-width: 1400px;
+            width: 100%;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .sidebar {
+            width: 350px;
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            max-height: 700px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .sidebar h3 {
+            color: #138808;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #FF9933;
+            padding-bottom: 0.5rem;
+        }
+
+        .law-category {
+            margin-bottom: 1.5rem;
+        }
+
+        .category-title {
+            background: linear-gradient(135deg, #138808 0%, #0d6606 100%);
+            color: white;
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .category-title:active {
+            transform: scale(0.98);
+        }
+
+        .category-title:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(19, 136, 8, 0.3);
+        }
+
+        .category-laws {
+            display: none;
+            padding-left: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .category-laws.active {
+            display: block;
+        }
+
+        .law-item {
+            padding: 0.5rem;
+            margin: 0.25rem 0;
+            background: #f8f9fa;
+            border-left: 3px solid #FF9933;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .law-item:active {
+            transform: scale(0.98);
+            background: #fff3e0;
+        }
+
+        .law-item:hover {
+            background: #fff3e0;
+            transform: translateX(5px);
+        }
+
+        .chat-container {
+            flex: 1;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            height: 700px;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #138808 0%, #0d6606 100%);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .chat-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .chat-header p {
+            font-size: 0.9rem;
+            opacity: 0.95;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            background: #f8f9fa;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 0.75rem;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .user-message .message-avatar {
+            background: linear-gradient(135deg, #FF9933 0%, #ff7700 100%);
+        }
+
+        .assistant-message .message-avatar {
+            background: linear-gradient(135deg, #138808 0%, #0d6606 100%);
+        }
+
+        .message-content {
+            flex: 1;
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            line-height: 1.6;
+        }
+
+        .user-message .message-content {
+            background: linear-gradient(135deg, #FF9933 0%, #ff7700 100%);
+            color: white;
+            margin-left: auto;
+            max-width: 70%;
+        }
+
+        .assistant-message .message-content {
+            background: white;
+            color: #333;
+            border: 1px solid #e0e0e0;
+            max-width: 85%;
+        }
+
+        .law-details {
+            background: #e8f5e9;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 0.5rem;
+            border-left: 4px solid #138808;
+        }
+
+        .law-details h4 {
+            color: #138808;
+            margin-bottom: 0.5rem;
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 0.75rem 1rem;
+            background: white;
+            border-radius: 10px;
+            width: fit-content;
+            border: 1px solid #e0e0e0;
+        }
+
+        .typing-indicator.active {
+            display: block;
+        }
+
+        .typing-indicator span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #138808;
+            margin: 0 2px;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        .input-area {
+            padding: 1.5rem;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .input-wrapper {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        #userInput {
+            flex: 1;
+            padding: 0.875rem 1.25rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        #userInput:focus {
+            border-color: #138808;
+        }
+
+        #sendBtn {
+            padding: 0.875rem 2.5rem;
+            background: linear-gradient(135deg, #138808 0%, #0d6606 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: 600;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        #sendBtn:active {
+            transform: scale(0.95);
+        }
+
+        #sendBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(19, 136, 8, 0.4);
+        }
+
+        #sendBtn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .quick-questions {
+            margin-bottom: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .quick-question-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(19, 136, 8, 0.1);
+            color: #138808;
+            border: 1px solid #138808;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .quick-question-btn:active {
+            transform: scale(0.95);
+            background: #138808;
+            color: white;
+        }
+
+        .quick-question-btn:hover {
+            background: #138808;
+            color: white;
+        }
+
+        .disclaimer {
+            max-width: 1400px;
+            margin: 1rem auto;
+            padding: 1.25rem;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+            border: 2px solid #FF9933;
+        }
+
+        .disclaimer strong {
+            color: #dc3545;
+        }
+
+        .search-box {
+            margin-bottom: 1rem;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #138808;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+                margin: 1rem auto;
+                padding: 0 0.5rem;
+            }
+
+            .sidebar {
+                width: 100%;
+                max-height: 300px;
+                order: 2;
+                margin-top: 1rem;
+            }
+
+            .chat-container {
+                height: 500px;
+                order: 1;
+            }
+
+            .category-title {
+                font-size: 0.9rem;
+                padding: 0.6rem;
+            }
+
+            .law-item {
+                font-size: 0.85rem;
+                padding: 0.4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                background: linear-gradient(180deg, #FF9933 0%, #FFFFFF 50%, #138808 100%);
+            }
+
+            .header {
+                padding: 1rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+
+            .logo {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .logo-icon {
+                font-size: 2rem;
+            }
+
+            .logo h1 {
+                font-size: 1.4rem;
+            }
+
+            .logo-subtitle {
+                font-size: 0.8rem;
+            }
+
+            .tagline {
+                font-size: 0.8rem;
+            }
+
+            .container {
+                margin: 0.5rem auto;
+            }
+
+            .sidebar {
+                padding: 1rem;
+                max-height: 250px;
+                border-radius: 10px;
+            }
+
+            .sidebar h3 {
+                font-size: 1rem;
+            }
+
+            .chat-container {
+                height: calc(100vh - 420px);
+                min-height: 400px;
+                border-radius: 10px;
+            }
+
+            .chat-header {
+                padding: 1rem;
+            }
+
+            .chat-header h2 {
+                font-size: 1.2rem;
+            }
+
+            .chat-header p {
+                font-size: 0.85rem;
+            }
+
+            .chat-messages {
+                padding: 1rem;
+            }
+
+            .message {
+                gap: 0.5rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .message-avatar {
+                width: 35px;
+                height: 35px;
+                font-size: 1.1rem;
+            }
+
+            .message-content {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+
+            .user-message .message-content {
+                max-width: 85%;
+            }
+
+            .assistant-message .message-content {
+                max-width: 90%;
+            }
+
+            .law-details {
+                padding: 0.75rem;
+                font-size: 0.85rem;
+            }
+
+            .law-details h4 {
+                font-size: 0.95rem;
+            }
+
+            .input-area {
+                padding: 1rem;
+            }
+
+            .quick-questions {
+                gap: 0.4rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .quick-question-btn {
+                padding: 0.4rem 0.75rem;
+                font-size: 0.75rem;
+                white-space: nowrap;
+            }
+
+            .input-wrapper {
+                gap: 0.5rem;
+            }
+
+            #userInput {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            #sendBtn {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .disclaimer {
+                padding: 1rem;
+                font-size: 0.8rem;
+                margin: 0.5rem auto;
+            }
+
+            .search-box input {
+                padding: 0.6rem;
+                font-size: 0.85rem;
+            }
+
+            ul, ol {
+                margin-left: 1.2rem;
+                font-size: 0.85rem;
+            }
+
+            li {
+                margin-bottom: 0.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .logo h1 {
+                font-size: 1.2rem;
+            }
+
+            .logo-icon {
+                font-size: 1.5rem;
+            }
+
+            .chat-container {
+                height: calc(100vh - 380px);
+                min-height: 350px;
+            }
+
+            .chat-header h2 {
+                font-size: 1rem;
+            }
+
+            .chat-header p {
+                font-size: 0.75rem;
+            }
+
+            .quick-questions {
+                flex-direction: column;
+            }
+
+            .quick-question-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            #sendBtn {
+                padding: 0.75rem 1.2rem;
+            }
+
+            .message-content {
+                font-size: 0.85rem;
+            }
+
+            .sidebar {
+                max-height: 200px;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .quick-question-btn,
+            .law-item,
+            .category-title,
+            #sendBtn {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .law-item {
+                margin: 0.3rem 0;
+            }
+
+            .category-title {
+                margin-bottom: 0.75rem;
+            }
+        }
+
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        li {
+            margin-bottom: 0.25rem;
+        }
+
+        .highlight {
+            background: #fff3e0;
+            padding: 0.125rem 0.25rem;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">⚖️</span>
+                <div>
+                    <h1>Indian AI Legal Assistant</h1>
+                    <p class="logo-subtitle">भारतीय कानून सहायक</p>
+                    <p class="tagline">Complete Database of Indian Laws & Legal Information</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <h3>📚 Indian Laws Database</h3>
+            
+            <div class="search-box">
+                <input type="text" id="lawSearch" placeholder="Search laws..." onkeyup="searchLaws()">
+            </div>
+
+            <div id="lawCategories">
+                <!-- Categories will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <div class="chat-container">
+            <div class="chat-header">
+                <h2>🇮🇳 Indian Legal Assistant Chatbot</h2>
+                <p>Ask questions about Indian laws, your rights, legal procedures, and more</p>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <div class="message assistant-message">
+                    <div class="message-avatar">⚖️</div>
+                    <div class="message-content">
+                        <strong>नमस्ते! Welcome to Indian AI Legal Assistant!</strong><br><br>
+                        I have comprehensive knowledge of Indian laws including:
+                        <ul>
+                            <li><strong>Constitutional Law</strong> - Fundamental Rights, Directive Principles</li>
+                            <li><strong>Criminal Law</strong> - IPC, CrPC, Evidence Act</li>
+                            <li><strong>Civil Law</strong> - Contract Act, Property Law, Family Law</li>
+                            <li><strong>Corporate & Business Law</strong> - Companies Act, SEBI regulations</li>
+                            <li><strong>Labour & Employment</strong> - Industrial laws, wage laws</li>
+                            <li><strong>Consumer Protection</strong> - Consumer rights and remedies</li>
+                            <li><strong>Tax Laws</strong> - Income Tax, GST, Customs</li>
+                            <li><strong>Cyber Laws</strong> - IT Act, Data Protection</li>
+                        </ul>
+                        <br>
+                        Browse the laws in the sidebar or ask me any legal question!
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-area">
+                <div class="quick-questions">
+                    <button class="quick-question-btn" onclick="askQuestion('What are fundamental rights under Indian Constitution?')">
+                        📜 Fundamental Rights
+                    </button>
+                    <button class="quick-question-btn" onclick="askQuestion('What is Section 498A IPC?')">
+                        ⚖️ Section 498A
+                    </button>
+                    <button class="quick-question-btn" onclick="askQuestion('What are consumer rights in India?')">
+                        🛒 Consumer Rights
+                    </button>
+                    <button class="quick-question-btn" onclick="askQuestion('What is GST in India?')">
+                        💰 GST
+                    </button>
+                    <button class="quick-question-btn" onclick="askQuestion('How to file an FIR?')">
+                        🚔 File FIR
+                    </button>
+                </div>
+                <div class="input-wrapper">
+                    <input 
+                        type="text" 
+                        id="userInput" 
+                        placeholder="Ask about any Indian law or legal matter..."
+                        onkeypress="handleKeyPress(event)"
+                    >
+                    <button id="sendBtn" onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="disclaimer">
+        <strong>⚠️ महत्वपूर्ण सूचना / Important Disclaimer:</strong> This AI assistant provides general legal information about Indian laws only and does not constitute legal advice. For specific legal matters, please consult with a qualified advocate licensed to practice in India. यह सामान्य कानूनी जानकारी है, कानूनी सलाह नहीं।
+    </div>
+
+    <script>
+        // Comprehensive Indian Laws Database
+        const indianLaws = {
+            "Constitutional Law": [
+                {
+                    name: "Constitution of India, 1950",
+                    description: "The supreme law of India. Establishes the structure, procedures, powers and duties of government institutions and sets out fundamental rights, directive principles, and duties of citizens.",
+                    keyPoints: [
+                        "Fundamental Rights (Articles 12-35): Right to Equality, Freedom, Against Exploitation, Freedom of Religion, Cultural and Educational Rights, Constitutional Remedies",
+                        "Directive Principles of State Policy (Articles 36-51)",
+                        "Fundamental Duties (Article 51A)",
+                        "Parliamentary system of government",
+                        "Federal structure with unitary features",
+                        "Independent judiciary with judicial review"
+                    ]
+                },
+                {
+                    name: "Right to Information Act, 2005",
+                    description: "Provides citizens the right to access information from public authorities, promoting transparency and accountability.",
+                    keyPoints: [
+                        "Right to information within 30 days",
+                        "Information related to life and liberty within 48 hours",
+                        "Appeal provisions available",
+                        "Penalties for non-compliance by public officials"
+                    ]
+                },
+                {
+                    name: "Right to Education Act, 2009",
+                    description: "Provides free and compulsory education to all children aged 6-14 years.",
+                    keyPoints: [
+                        "Free and compulsory education",
+                        "25% reservation in private schools for economically weaker sections",
+                        "No donation or capitation fees",
+                        "No screening procedure for admission"
+                    ]
+                }
+            ],
+            "Criminal Law": [
+                {
+                    name: "Indian Penal Code (IPC), 1860",
+                    description: "The main criminal code of India covering all substantive aspects of criminal law.",
+                    keyPoints: [
+                        "Murder (Section 302): Punishment with death or life imprisonment",
+                        "Theft (Section 378-382): Taking property dishonestly",
+                        "Robbery (Section 390-402): Theft with force or threat",
+                        "Cheating (Section 415-420): Deceiving someone to deliver property",
+                        "Criminal Breach of Trust (Section 405-409)",
+                        "Defamation (Section 499-502)",
+                        "Assault (Section 351-358)",
+                        "Rape (Section 375-376): Sexual assault offenses",
+                        "Dowry Death (Section 304B): Death within 7 years of marriage",
+                        "Cruelty by Husband (Section 498A)",
+                        "Kidnapping & Abduction (Section 359-369)",
+                        "Criminal Intimidation (Section 503-506)"
+                    ]
+                },
+                {
+                    name: "Code of Criminal Procedure (CrPC), 1973",
+                    description: "Provides the procedural framework for administration of criminal law in India.",
+                    keyPoints: [
+                        "FIR (First Information Report) - Section 154",
+                        "Arrest procedures - Section 41",
+                        "Bail provisions - Sections 436-450",
+                        "Investigation procedures",
+                        "Trial procedures for different offenses",
+                        "Powers of police and magistrates",
+                        "Appeal and revision procedures"
+                    ]
+                },
+                {
+                    name: "Indian Evidence Act, 1872",
+                    description: "Governs admissibility of evidence in Indian courts.",
+                    keyPoints: [
+                        "Burden of proof",
+                        "Relevancy of facts",
+                        "Admission and confession",
+                        "Documentary evidence",
+                        "Oral evidence",
+                        "Expert opinion",
+                        "Examination of witnesses"
+                    ]
+                },
+                {
+                    name: "Bharatiya Nyaya Sanhita (BNS), 2023",
+                    description: "New criminal code replacing IPC from July 2024.",
+                    keyPoints: [
+                        "Modernizes language and provisions",
+                        "Enhanced punishments for crimes against women and children",
+                        "New provisions for organized crime and terrorism",
+                        "Community service as punishment option"
+                    ]
+                },
+                {
+                    name: "Protection of Children from Sexual Offences (POCSO) Act, 2012",
+                    description: "Comprehensive law to protect children from sexual abuse and exploitation.",
+                    keyPoints: [
+                        "Covers all forms of sexual abuse of children below 18 years",
+                        "Mandatory reporting of offenses",
+                        "Special courts for speedy trial",
+                        "Stringent punishments including life imprisonment"
+                    ]
+                },
+                {
+                    name: "Prevention of Corruption Act, 1988",
+                    description: "Deals with corruption in public services.",
+                    keyPoints: [
+                        "Offense of taking gratification",
+                        "Criminal misconduct by public servants",
+                        "Abetment of corruption",
+                        "Powers of investigation"
+                    ]
+                },
+                {
+                    name: "Narcotic Drugs and Psychotropic Substances (NDPS) Act, 1985",
+                    description: "Controls and regulates operations relating to narcotic drugs and psychotropic substances.",
+                    keyPoints: [
+                        "Prohibition of cultivation, production, possession, sale of narcotic drugs",
+                        "Different quantities: small, commercial, intermediate",
+                        "Stringent punishments including death penalty for repeat offenders",
+                        "Presumption of guilt in certain cases"
+                    ]
+                }
+            ],
+            "Civil & Contract Law": [
+                {
+                    name: "Indian Contract Act, 1872",
+                    description: "Governs contracts in India and provides the framework for contractual relationships.",
+                    keyPoints: [
+                        "Essential elements of contract: Offer, Acceptance, Consideration, Capacity, Free Consent, Lawful Object",
+                        "Void and Voidable contracts",
+                        "Performance of contracts",
+                        "Breach of contract and remedies",
+                        "Specific contracts: Indemnity, Guarantee, Bailment, Pledge, Agency",
+                        "Quasi-contracts"
+                    ]
+                },
+                {
+                    name: "Sale of Goods Act, 1930",
+                    description: "Governs contracts for sale of goods.",
+                    keyPoints: [
+                        "Transfer of ownership",
+                        "Conditions and warranties",
+                        "Rights of unpaid seller",
+                        "Remedies for breach",
+                        "Delivery and payment terms"
+                    ]
+                },
+                {
+                    name: "Transfer of Property Act, 1882",
+                    description: "Regulates transfer of property in India.",
+                    keyPoints: [
+                        "Transfer by sale, mortgage, lease, exchange, gift",
+                        "Registration requirements",
+                        "Rights and liabilities of parties",
+                        "Doctrine of lis pendens",
+                        "Fraudulent transfers"
+                    ]
+                },
+                {
+                    name: "Specific Relief Act, 1963",
+                    description: "Provides remedies for civil wrongs through specific performance.",
+                    keyPoints: [
+                        "Specific performance of contracts",
+                        "Injunctions - temporary and permanent",
+                        "Recovery of possession of property",
+                        "Rectification of instruments"
+                    ]
+                },
+                {
+                    name: "Limitation Act, 1963",
+                    description: "Prescribes time limits for filing different types of suits.",
+                    keyPoints: [
+                        "3 years for most civil suits",
+                        "12 years for suits relating to immovable property",
+                        "30 years for government suits",
+                        "Computation of limitation period",
+                        "Extension and condonation of delay"
+                    ]
+                },
+                {
+                    name: "Easements Act, 1882",
+                    description: "Deals with rights over another's property.",
+                    keyPoints: [
+                        "Right of way",
+                        "Right to light and air",
+                        "Right to water",
+                        "Acquisition by prescription"
+                    ]
+                }
+            ],
+            "Family & Personal Law": [
+                {
+                    name: "Hindu Marriage Act, 1955",
+                    description: "Governs marriage and divorce among Hindus, Buddhists, Jains, and Sikhs.",
+                    keyPoints: [
+                        "Conditions for valid Hindu marriage",
+                        "Registration of marriage",
+                        "Grounds for divorce: Adultery, Cruelty, Desertion, Conversion, Mental disorder, Venereal disease, Renunciation, Presumption of death",
+                        "Maintenance and alimony provisions",
+                        "Custody of children",
+                        "Mutual consent divorce after 1 year of marriage"
+                    ]
+                },
+                {
+                    name: "Special Marriage Act, 1954",
+                    description: "Provides for civil marriage irrespective of religion.",
+                    keyPoints: [
+                        "Inter-faith marriages",
+                        "30 days notice period",
+                        "Registration of marriage",
+                        "Same grounds for divorce as Hindu Marriage Act"
+                    ]
+                },
+                {
+                    name: "Hindu Succession Act, 1956",
+                    description: "Governs inheritance and succession among Hindus.",
+                    keyPoints: [
+                        "Intestate succession - Class I and Class II heirs",
+                        "Equal rights for daughters in ancestral property (2005 amendment)",
+                        "Testamentary succession - through will",
+                        "Female inheritance rights",
+                        "Coparcenary rights"
+                    ]
+                },
+                {
+                    name: "Hindu Minority and Guardianship Act, 1956",
+                    description: "Deals with guardianship of Hindu minors.",
+                    keyPoints: [
+                        "Natural guardians - father, then mother",
+                        "Welfare of minor is paramount",
+                        "Minority till age 18",
+                        "Powers and duties of guardians"
+                    ]
+                },
+                {
+                    name: "Muslim Personal Law (Shariat) Application Act, 1937",
+                    description: "Governs Muslims in matters of marriage, succession, inheritance.",
+                    keyPoints: [
+                        "Marriage as contract",
+                        "Mehr (dower) provisions",
+                        "Divorce: Talaq, Khula, Mubarat",
+                        "Inheritance according to Quranic shares"
+                    ]
+                },
+                {
+                    name: "Dissolution of Muslim Marriages Act, 1939",
+                    description: "Provides grounds for divorce to Muslim women.",
+                    keyPoints: [
+                        "Grounds: Husband's whereabouts unknown for 4 years, failure to maintain, imprisonment, impotency, cruelty, etc.",
+                        "Procedure for divorce",
+                        "Mehr and maintenance"
+                    ]
+                },
+                {
+                    name: "Christian Marriage Act, 1872",
+                    description: "Regulates Christian marriages in India.",
+                    keyPoints: [
+                        "Age requirements",
+                        "Notice and registration",
+                        "Solemnization of marriage",
+                        "Prohibited degrees of relationship"
+                    ]
+                },
+                {
+                    name: "Indian Divorce Act, 1869",
+                    description: "Governs divorce among Christians.",
+                    keyPoints: [
+                        "Grounds for divorce",
+                        "Judicial separation",
+                        "Alimony and maintenance",
+                        "Custody of children"
+                    ]
+                },
+                {
+                    name: "Guardians and Wards Act, 1890",
+                    description: "General law for appointment and duties of guardians.",
+                    keyPoints: [
+                        "Appointment of guardians",
+                        "Powers and responsibilities",
+                        "Welfare of minor paramount",
+                        "Court's jurisdiction"
+                    ]
+                },
+                {
+                    name: "Protection of Women from Domestic Violence Act, 2005",
+                    description: "Protects women from domestic violence.",
+                    keyPoints: [
+                        "Covers physical, sexual, verbal, emotional, economic abuse",
+                        "Protection orders",
+                        "Residence orders",
+                        "Monetary relief",
+                        "Custody orders",
+                        "Covers live-in relationships"
+                    ]
+                },
+                {
+                    name: "Prohibition of Child Marriage Act, 2006",
+                    description: "Prohibits child marriage in India.",
+                    keyPoints: [
+                        "Minimum age: 21 for males, 18 for females",
+                        "Child marriage is voidable",
+                        "Punishment for promoting child marriage",
+                        "Protection officers appointed"
+                    ]
+                }
+            ],
+            "Labour & Employment Law": [
+                {
+                    name: "Industrial Disputes Act, 1947",
+                    description: "Provides mechanism for investigation and settlement of industrial disputes.",
+                    keyPoints: [
+                        "Definition of industrial dispute",
+                        "Strikes and lockouts regulations",
+                        "Layoff and retrenchment provisions",
+                        "Closure of undertakings",
+                        "Conciliation and arbitration",
+                        "Labour courts and tribunals"
+                    ]
+                },
+                {
+                    name: "Employees' Provident Funds Act, 1952",
+                    description: "Provides for provident fund, pension, and insurance for employees.",
+                    keyPoints: [
+                        "12% contribution from employer and employee",
+                        "Applicable to establishments with 20+ employees",
+                        "Pension scheme",
+                        "Deposit-linked insurance",
+                        "Withdrawal provisions"
+                    ]
+                },
+                {
+                    name: "Employees' State Insurance Act, 1948",
+                    description: "Provides health insurance and social security to workers.",
+                    keyPoints: [
+                        "Medical benefits for self and family",
+                        "Sickness benefit",
+                        "Maternity benefit",
+                        "Disablement benefit",
+                        "Applicable to factories with 10+ workers"
+                    ]
+                },
+                {
+                    name: "Payment of Wages Act, 1936",
+                    description: "Regulates payment of wages to employees.",
+                    keyPoints: [
+                        "Timely payment of wages (7th or 10th of month)",
+                        "Permissible deductions",
+                        "Maintenance of wage registers",
+                        "Penalties for delayed payment"
+                    ]
+                },
+                {
+                    name: "Minimum Wages Act, 1948",
+                    description: "Provides for fixing minimum wages in certain employments.",
+                    keyPoints: [
+                        "State-wise minimum wages",
+                        "Different rates for different sectors",
+                        "Revision every 5 years",
+                        "Overtime wages at double rate"
+                    ]
+                },
+                {
+                    name: "Payment of Bonus Act, 1965",
+                    description: "Provides for payment of bonus to employees.",
+                    keyPoints: [
+                        "Minimum 8.33% of salary or ₹100, whichever is higher",
+                        "Maximum 20% of salary",
+                        "Based on profit or productivity",
+                        "Applicable to establishments with 20+ employees"
+                    ]
+                },
+                {
+                    name: "Payment of Gratuity Act, 1972",
+                    description: "Provides for gratuity to employees on retirement or resignation.",
+                    keyPoints: [
+                        "Applicable after 5 years of continuous service",
+                        "Formula: (Last drawn salary × years of service × 15) / 26",
+                        "Maximum ₹20 lakhs (revised periodically)",
+                        "Payable on retirement, resignation, death, disablement"
+                    ]
+                },
+                {
+                    name: "Maternity Benefit Act, 1961",
+                    description: "Provides maternity benefits to women employees.",
+                    keyPoints: [
+                        "26 weeks paid maternity leave (12 weeks for third child onwards)",
+                        "Work from home option",
+                        "Crèche facility in establishments with 50+ employees",
+                        "Protection from dismissal during pregnancy and maternity leave"
+                    ]
+                },
+                {
+                    name: "Factories Act, 1948",
+                    description: "Regulates working conditions in factories.",
+                    keyPoints: [
+                        "Health, safety, and welfare provisions",
+                        "Working hours: 48 per week, 9 per day",
+                        "Weekly holiday mandatory",
+                        "Annual leave with wages",
+                        "Employment of women and children regulated"
+                    ]
+                },
+                {
+                    name: "Shops and Establishments Acts",
+                    description: "State-specific laws regulating shops and commercial establishments.",
+                    keyPoints: [
+                        "Registration of establishments",
+                        "Working hours and rest intervals",
+                        "Weekly holidays",
+                        "Annual and casual leaves",
+                        "Terms of employment and service conditions"
+                    ]
+                },
+                {
+                    name: "Contract Labour (Regulation & Abolition) Act, 1970",
+                    description: "Regulates employment of contract labour.",
+                    keyPoints: [
+                        "Registration of establishments",
+                        "Licensing of contractors",
+                        "Welfare facilities for contract workers",
+                        "Wages and conditions of service",
+                        "Abolition in certain cases"
+                    ]
+                },
+                {
+                    name: "Equal Remuneration Act, 1976",
+                    description: "Provides for equal pay for equal work for men and women.",
+                    keyPoints: [
+                        "No discrimination in recruitment",
+                        "Equal pay for equal work",
+                        "No wage discrimination on grounds of sex",
+                        "Advisory committees"
+                    ]
+                },
+                {
+                    name: "Sexual Harassment of Women at Workplace Act, 2013",
+                    description: "Provides protection against sexual harassment at workplace.",
+                    keyPoints: [
+                        "Definition of sexual harassment",
+                        "Internal Complaints Committee (ICC) mandatory in organizations with 10+ employees",
+                        "Complaint and inquiry procedure",
+                        "Interim relief to complainant",
+                        "Penalties for non-compliance"
+                    ]
+                },
+                {
+                    name: "Code on Wages, 2019",
+                    description: "Consolidates laws relating to wages (replacing 4 labour laws).",
+                    keyPoints: [
+                        "Universal minimum wage",
+                        "Timely payment of wages",
+                        "Equal remuneration",
+                        "Single definition of wages"
+                    ]
+                }
+            ],
+            "Consumer Protection": [
+                {
+                    name: "Consumer Protection Act, 2019",
+                    description: "Protects consumer rights and provides mechanism for redressal of consumer disputes.",
+                    keyPoints: [
+                        "Consumer Rights: Right to safety, information, choice, be heard, redressal, consumer education",
+                        "Unfair trade practices prohibited",
+                        "Product liability provisions",
+                        "E-commerce regulations",
+                        "Consumer Disputes Redressal Forums: District, State, National",
+                        "Jurisdiction based on value: District (up to ₹1 crore), State (₹1-10 crore), National (above ₹10 crore)",
+                        "Time limit: 2 years from cause of action",
+                        "Compensation for deficiency in service",
+                        "Central Consumer Protection Authority"
+                    ]
+                },
+                {
+                    name: "Legal Metrology Act, 2009",
+                    description: "Regulates weights, measures, and packaged commodities.",
+                    keyPoints: [
+                        "Standards for weights and measures",
+                        "Mandatory declarations on packages",
+                        "MRP regulations",
+                        "Verification of instruments"
+                    ]
+                },
+                {
+                    name: "Food Safety and Standards Act, 2006",
+                    description: "Ensures safe and wholesome food for human consumption.",
+                    keyPoints: [
+                        "FSSAI licensing and registration",
+                        "Food standards and quality",
+                        "Labeling requirements",
+                        "Penalties for food adulteration"
+                    ]
+                }
+            ],
+            "Corporate & Business Law": [
+                {
+                    name: "Companies Act, 2013",
+                    description: "Comprehensive law regulating companies in India.",
+                    keyPoints: [
+                        "Incorporation and registration",
+                        "Types: Private, Public, OPC, Section 8 (NPO)",
+                        "Minimum capital requirements removed",
+                        "Directors' duties and liabilities",
+                        "Board meetings and AGM requirements",
+                        "Financial statements and audit",
+                        "Corporate Social Responsibility (CSR) - 2% of net profit for companies above threshold",
+                        "Mergers and amalgamations",
+                        "Winding up and liquidation",
+                        "National Company Law Tribunal (NCLT)"
+                    ]
+                },
+                {
+                    name: "Limited Liability Partnership Act, 2008",
+                    description: "Provides for limited liability partnerships.",
+                    keyPoints: [
+                        "Separate legal entity",
+                        "Limited liability of partners",
+                        "No minimum capital requirement",
+                        "Flexibility in internal management",
+                        "Less compliance than companies"
+                    ]
+                },
+                {
+                    name: "Indian Partnership Act, 1932",
+                    description: "Governs partnerships in India.",
+                    keyPoints: [
+                        "Partnership definition and formation",
+                        "Rights and duties of partners",
+                        "Partnership deed",
+                        "Registration (optional but advisable)",
+                        "Dissolution of partnership"
+                    ]
+                },
+                {
+                    name: "Insolvency and Bankruptcy Code, 2016",
+                    description: "Provides framework for insolvency resolution.",
+                    keyPoints: [
+                        "Corporate insolvency resolution process (CIRP)",
+                        "Liquidation process",
+                        "Individual insolvency",
+                        "Insolvency professionals",
+                        "Time-bound resolution (180-270 days)"
+                    ]
+                },
+                {
+                    name: "Competition Act, 2002",
+                    description: "Prevents anti-competitive practices and promotes competition.",
+                    keyPoints: [
+                        "Prohibition of anti-competitive agreements",
+                        "Abuse of dominant position",
+                        "Regulation of combinations (mergers, acquisitions)",
+                        "Competition Commission of India (CCI)"
+                    ]
+                },
+                {
+                    name: "SEBI Act, 1992 & Regulations",
+                    description: "Regulates securities markets in India.",
+                    keyPoints: [
+                        "Protection of investors",
+                        "Development and regulation of securities market",
+                        "SEBI (ICDR) Regulations - IPOs and rights issues",
+                        "SEBI (LODR) Regulations - Listing obligations",
+                        "SEBI (PIT) Regulations - Insider trading",
+                        "Mutual funds regulations"
+                    ]
+                },
+                {
+                    name: "Foreign Exchange Management Act (FEMA), 1999",
+                    description: "Regulates foreign exchange transactions.",
+                    keyPoints: [
+                        "Regulation of foreign exchange dealings",
+                        "FDI and FPI regulations",
+                        "Current and capital account transactions",
+                        "Export and import of goods and services",
+                        "Overseas Direct Investment (ODI)"
+                    ]
+                },
+                {
+                    name: "Negotiable Instruments Act, 1881",
+                    description: "Governs negotiable instruments like cheques, promissory notes, bills of exchange.",
+                    keyPoints: [
+                        "Cheque bounce (Section 138): Criminal offense, up to 2 years imprisonment or fine up to twice the cheque amount",
+                        "Notice to drawer within 30 days of dishonor",
+                        "Complaint to be filed within 1 month of cause of action",
+                        "Electronic negotiable instruments",
+                        "Payment through truncated cheques"
+                    ]
+                }
+            ],
+            "Tax Laws": [
+                {
+                    name: "Income Tax Act, 1961",
+                    description: "Governs taxation of income in India.",
+                    keyPoints: [
+                        "Tax slabs for individuals (old and new regime)",
+                        "Capital gains tax: Short-term and long-term",
+                        "TDS (Tax Deducted at Source) provisions",
+                        "PAN and Aadhaar linking mandatory",
+                        "Return filing deadlines: 31st July (individuals), 31st October (audited accounts)",
+                        "Tax deductions under Section 80C, 80D, etc.",
+                        "Assessment and reassessment procedures",
+                        "Penalty and prosecution provisions"
+                    ]
+                },
+                {
+                    name: "Goods and Services Tax (GST) Acts, 2017",
+                    description: "Comprehensive indirect tax on supply of goods and services.",
+                    keyPoints: [
+                        "CGST, SGST, IGST, UTGST",
+                        "Tax rates: 0%, 5%, 12%, 18%, 28%",
+                        "Input tax credit mechanism",
+                        "Registration threshold: ₹40 lakhs (₹20 lakhs for special category states)",
+                        "Composition scheme for small businesses",
+                        "Monthly/quarterly returns filing",
+                        "E-way bill for goods movement",
+                        "Reverse charge mechanism",
+                        "Anti-profiteering provisions"
+                    ]
+                },
+                {
+                    name: "Customs Act, 1962",
+                    description: "Regulates import and export of goods.",
+                    keyPoints: [
+                        "Customs duty on imports",
+                        "Baggage rules",
+                        "Export promotion schemes",
+                        "Customs valuation",
+                        "Special Economic Zones (SEZ)"
+                    ]
+                },
+                {
+                    name: "Black Money (Undisclosed Foreign Income and Assets) Act, 2015",
+                    description: "Deals with undisclosed foreign assets and income.",
+                    keyPoints: [
+                        "Tax at 30% on undisclosed foreign assets",
+                        "Penalty equal to tax",
+                        "Prosecution provisions",
+                        "Requirement to disclose foreign assets in ITR"
+                    ]
+                },
+                {
+                    name: "Benami Transactions (Prohibition) Act, 1988",
+                    description: "Prohibits benami transactions and provides for confiscation of benami property.",
+                    keyPoints: [
+                        "Definition of benami property",
+                        "Prohibition of benami transactions",
+                        "Rigorous imprisonment up to 7 years and fine up to 25% of fair market value",
+                        "Confiscation of benami property"
+                    ]
+                }
+            ],
+            "Property & Real Estate Law": [
+                {
+                    name: "Real Estate (Regulation and Development) Act, 2016 (RERA)",
+                    description: "Regulates real estate sector and protects homebuyers.",
+                    keyPoints: [
+                        "Mandatory registration of projects",
+                        "70% of funds to be kept in escrow",
+                        "Penalty for delay in possession",
+                        "Carpet area definition standardized",
+                        "Real Estate Regulatory Authority in each state",
+                        "5-year defect liability period",
+                        "Fast-track dispute resolution"
+                    ]
+                },
+                {
+                    name: "Registration Act, 1908",
+                    description: "Governs registration of documents.",
+                    keyPoints: [
+                        "Compulsory registration of sale deeds, gift deeds, partition deeds, etc.",
+                        "Optional registration of wills, lease deeds below 12 months",
+                        "Stamp duty payment",
+                        "Time limit for registration: 4 months from execution",
+                        "Registration provides notice to third parties"
+                    ]
+                },
+                {
+                    name: "Indian Stamp Act, 1899",
+                    description: "Governs levy and collection of stamp duty.",
+                    keyPoints: [
+                        "Stamp duty on instruments",
+                        "State-specific rates",
+                        "E-stamping facilities",
+                        "Franking",
+                        "Instruments not properly stamped are not admissible as evidence"
+                    ]
+                },
+                {
+                    name: "Urban Land (Ceiling and Regulation) Act, 1976",
+                    description: "Imposes ceiling on vacant land in urban areas (repealed in most states).",
+                    keyPoints: [
+                        "Mostly repealed",
+                        "Previously prevented land hoarding",
+                        "Still applicable in some UTs"
+                    ]
+                }
+            ],
+            "Cyber & IT Law": [
+                {
+                    name: "Information Technology Act, 2000 (amended 2008)",
+                    description: "Provides legal framework for electronic governance and e-commerce, and addresses cybercrimes.",
+                    keyPoints: [
+                        "Legal recognition of electronic records and digital signatures",
+                        "Cybercrimes: Hacking (Section 66), Identity theft (66C), Cyber terrorism (66F)",
+                        "Obscene content online (Section 67)",
+                        "Data protection and privacy provisions",
+                        "Intermediary liability (Section 79)",
+                        "Electronic Service Delivery",
+                        "Penalties and adjudication",
+                        "Cyber appellate tribunal"
+                    ]
+                },
+                {
+                    name: "Digital Personal Data Protection Act, 2023",
+                    description: "Comprehensive data protection law for India.",
+                    keyPoints: [
+                        "Consent-based data processing",
+                        "Data principal rights: Access, correction, erasure",
+                        "Data fiduciary obligations",
+                        "Cross-border data transfer regulations",
+                        "Penalties up to ₹250 crores",
+                        "Data Protection Board"
+                    ]
+                },
+                {
+                    name: "Aadhaar Act, 2016",
+                    description: "Provides legal backing to Aadhaar and regulates its use.",
+                    keyPoints: [
+                        "Aadhaar as unique identity",
+                        "Voluntary for most services (as per Supreme Court)",
+                        "Mandatory for PAN-Aadhaar linking, government subsidies",
+                        "Privacy and security provisions",
+                        "Penalties for violations"
+                    ]
+                }
+            ],
+            "Intellectual Property": [
+                {
+                    name: "Copyright Act, 1957",
+                    description: "Protects original literary, dramatic, musical, and artistic works.",
+                    keyPoints: [
+                        "Protection for lifetime of author + 60 years",
+                        "Economic and moral rights",
+                        "Registration not mandatory but advisable",
+                        "Fair dealing exceptions",
+                        "Infringement and remedies",
+                        "Digital rights management",
+                        "Copyright Board"
+                    ]
+                },
+                {
+                    name: "Patents Act, 1970",
+                    description: "Provides for patents for inventions.",
+                    keyPoints: [
+                        "20 years protection from filing date",
+                        "Novelty, inventive step, industrial application required",
+                        "Patent not granted for: Mathematical methods, business methods, computer programs per se, methods of treatment",
+                        "Compulsory licensing provisions",
+                        "Patent infringement and remedies"
+                    ]
+                },
+                {
+                    name: "Trade Marks Act, 1999",
+                    description: "Provides for registration and protection of trademarks.",
+                    keyPoints: [
+                        "Protection for 10 years, renewable indefinitely",
+                        "Distinctive mark for goods/services",
+                        "Registration provides exclusive rights",
+                        "Well-known trademarks get enhanced protection",
+                        "Trademark infringement and passing off"
+                    ]
+                },
+                {
+                    name: "Designs Act, 2000",
+                    description: "Protects new and original designs.",
+                    keyPoints: [
+                        "Protection for 10 years, extendable to 15 years",
+                        "Covers shape, pattern, ornamentation of articles",
+                        "Must be novel and original",
+                        "Registration mandatory for protection"
+                    ]
+                },
+                {
+                    name: "Geographical Indications of Goods Act, 1999",
+                    description: "Provides for registration and protection of geographical indications.",
+                    keyPoints: [
+                        "Protection for products originating from specific geographical area",
+                        "Examples: Darjeeling Tea, Basmati Rice, Kanchipuram Silk",
+                        "10 years protection, renewable",
+                        "Prevents misuse by unauthorized persons"
+                    ]
+                }
+            ],
+            "Environmental Law": [
+                {
+                    name: "Environment (Protection) Act, 1986",
+                    description: "Umbrella legislation for environmental protection.",
+                    keyPoints: [
+                        "Powers to central government for environmental protection",
+                        "Standards for emissions and discharges",
+                        "Handling of hazardous substances",
+                        "Environmental impact assessment",
+                        "Penalties for violations"
+                    ]
+                },
+                {
+                    name: "Water (Prevention and Control of Pollution) Act, 1974",
+                    description: "Prevents and controls water pollution.",
+                    keyPoints: [
+                        "Central and State Pollution Control Boards",
+                        "Consent for discharge of effluents",
+                        "Standards for water quality",
+                        "Penalties for violations"
+                    ]
+                },
+                {
+                    name: "Air (Prevention and Control of Pollution) Act, 1981",
+                    description: "Prevents and controls air pollution.",
+                    keyPoints: [
+                        "Declaration of air pollution control areas",
+                        "Standards for air quality",
+                        "Consent for establishing industries",
+                        "Penalties for violations"
+                    ]
+                },
+                {
+                    name: "Forest (Conservation) Act, 1980",
+                    description: "Provides for conservation of forests.",
+                    keyPoints: [
+                        "Restriction on diversion of forest land for non-forest purposes",
+                        "Prior approval of central government required",
+                        "Compensatory afforestation",
+                        "National Afforestation and Eco-Development Board"
+                    ]
+                },
+                {
+                    name: "Wildlife Protection Act, 1972",
+                    description: "Provides for protection of wild animals and plants.",
+                    keyPoints: [
+                        "Schedules of protected species",
+                        "Hunting prohibitions",
+                        "Protected areas: National Parks, Sanctuaries",
+                        "Wildlife Crime Control Bureau",
+                        "Strict penalties including imprisonment"
+                    ]
+                },
+                {
+                    name: "National Green Tribunal Act, 2010",
+                    description: "Establishes tribunal for environmental disputes.",
+                    keyPoints: [
+                        "Fast-track disposal of environmental cases",
+                        "Expert members from environmental and legal fields",
+                        "Appeal from NGT to Supreme Court",
+                        "Compensation for environmental damage"
+                    ]
+                }
+            ],
+            "Media & Entertainment": [
+                {
+                    name: "Cinematograph Act, 1952",
+                    description: "Regulates film certification and exhibition.",
+                    keyPoints: [
+                        "Central Board of Film Certification (CBFC)",
+                        "Categories: U, UA, A, S",
+                        "Certification mandatory for public exhibition",
+                        "Revising Committee and Tribunal"
+                    ]
+                },
+                {
+                    name: "Cable Television Networks (Regulation) Act, 1995",
+                    description: "Regulates cable television networks.",
+                    keyPoints: [
+                        "Registration of cable operators",
+                        "Programme and advertising code",
+                        "Prohibition of unauthorized transmission",
+                        "Penalties for violations"
+                    ]
+                },
+                {
+                    name: "Prasar Bharati (Broadcasting Corporation of India) Act, 1990",
+                    description: "Establishes public service broadcaster.",
+                    keyPoints: [
+                        "Autonomy to Doordarshan and All India Radio",
+                        "Broadcasting codes",
+                        "Prasar Bharati Board"
+                    ]
+                }
+            ],
+            "Banking & Finance": [
+                {
+                    name: "Reserve Bank of India Act, 1934",
+                    description: "Establishes RBI and provides for regulation of banking and monetary policy.",
+                    keyPoints: [
+                        "RBI as central bank",
+                        "Monetary policy formulation",
+                        "Regulation of banks and NBFCs",
+                        "Currency issuance",
+                        "Foreign exchange management"
+                    ]
+                },
+                {
+                    name: "Banking Regulation Act, 1949",
+                    description: "Regulates banking companies in India.",
+                    keyPoints: [
+                        "Licensing of banks",
+                        "Management and operations",
+                        "Restriction on shareholding and voting rights",
+                        "Reserve requirements",
+                        "Inspection and audit"
+                    ]
+                },
+                {
+                    name: "Securitisation and Reconstruction of Financial Assets and Enforcement of Security Interest (SARFAESI) Act, 2002",
+                    description: "Enables banks to recover non-performing assets without court intervention.",
+                    keyPoints: [
+                        "Recovery of secured debts",
+                        "Asset Reconstruction Companies",
+                        "Enforcement without court intervention",
+                        "60-day notice to borrower",
+                        "Right to appeal to DRT"
+                    ]
+                },
+                {
+                    name: "Prevention of Money Laundering Act, 2002",
+                    description: "Prevents money laundering and confiscation of property derived from money laundering.",
+                    keyPoints: [
+                        "Money laundering defined",
+                        "KYC requirements",
+                        "Reporting of suspicious transactions",
+                        "Enforcement Directorate powers",
+                        "Attachment and confiscation of property",
+                        "Stringent punishments"
+                    ]
+                },
+                {
+                    name: "Payment and Settlement Systems Act, 2007",
+                    description: "Regulates payment and settlement systems.",
+                    keyPoints: [
+                        "RBI as regulator",
+                        "Authorization for payment systems",
+                        "Digital payment regulations",
+                        "Consumer protection in digital payments"
+                    ]
+                }
+            ],
+            "Other Important Laws": [
+                {
+                    name: "Right to Fair Compensation and Transparency in Land Acquisition, Rehabilitation and Resettlement Act, 2013",
+                    description: "Regulates land acquisition for public purposes.",
+                    keyPoints: [
+                        "Consent requirement: 70% for PPP, 80% for private projects",
+                        "Social Impact Assessment mandatory",
+                        "Compensation at 4 times market value (rural), 2 times (urban)",
+                        "Rehabilitation and resettlement provisions",
+                        "Return of unutilized land"
+                    ]
+                },
+                {
+                    name: "Persons with Disabilities (Equal Opportunities, Protection of Rights and Full Participation) Act, 1995 / Rights of Persons with Disabilities Act, 2016",
+                    description: "Protects rights of persons with disabilities.",
+                    keyPoints: [
+                        "21 types of disabilities recognized",
+                        "Non-discrimination",
+                        "Reservation in education and employment (4%)",
+                        "Accessibility standards",
+                        "Social security and welfare"
+                    ]
+                },
+                {
+                    name: "Senior Citizens Act (Maintenance and Welfare of Parents and Senior Citizens Act), 2007",
+                    description: "Provides for maintenance and welfare of senior citizens.",
+                    keyPoints: [
+                        "Children obligated to maintain parents",
+                        "Maintenance Tribunals",
+                        "Maximum maintenance: ₹10,000 per month",
+                        "Eviction from property if gifted",
+                        "Old age homes and healthcare facilities"
+                    ]
+                },
+                {
+                    name: "Juvenile Justice (Care and Protection of Children) Act, 2015",
+                    description: "Provides for care, protection, and rehabilitation of children.",
+                    keyPoints: [
+                        "Children in conflict with law",
+                        "Children in need of care and protection",
+                        "Juvenile Justice Boards",
+                        "Child Welfare Committees",
+                        "Adoption regulations",
+                        "Trial of juveniles (16-18) as adults for heinous offenses"
+                    ]
+                },
+                {
+                    name: "Motor Vehicles Act, 1988",
+                    description: "Regulates motor vehicles and road safety.",
+                    keyPoints: [
+                        "Licensing of drivers and registration of vehicles",
+                        "Insurance mandatory: Third-party liability",
+                        "Traffic rules and penalties (amended 2019 with increased fines)",
+                        "Compensation for accident victims",
+                        "Hit and run cases: ₹2 lakh (death), ₹50,000 (grievous injury)"
+                    ]
+                },
+                {
+                    name: "Arms Act, 1959",
+                    description: "Regulates acquisition, possession, and carrying of arms and ammunition.",
+                    keyPoints: [
+                        "License required for arms",
+                        "Types of licenses",
+                        "Prohibited and restricted arms",
+                        "Stringent penalties including life imprisonment"
+                    ]
+                },
+                {
+                    name: "Advocates Act, 1961",
+                    description: "Regulates legal profession in India.",
+                    keyPoints: [
+                        "Bar Council of India and State Bar Councils",
+                        "Enrollment of advocates",
+                        "Professional standards and ethics",
+                        "Disciplinary proceedings",
+                        "Right to practice in all courts"
+                    ]
+                },
+                {
+                    name: "Arbitration and Conciliation Act, 1996",
+                    description: "Provides for domestic and international arbitration and conciliation.",
+                    keyPoints: [
+                        "Arbitration agreement and procedure",
+                        "Domestic and international arbitration",
+                        "Appointment of arbitrators",
+                        "Award and enforcement",
+                        "Time-bound arbitration (12 months)",
+                        "Limited court intervention"
+                    ]
+                },
+                {
+                    name: "Public Interest Disclosure and Protection to Persons Making the Disclosures Act, 2014 (Whistle Blowers Act)",
+                    description: "Protects whistleblowers who expose corruption.",
+                    keyPoints: [
+                        "Protection to persons making public interest disclosures",
+                        "Complaints about corruption to Competent Authority",
+                        "Anonymity of complainant",
+                        "Penalty for false complaints"
+                    ]
+                },
+                {
+                    name: "Transgender Persons (Protection of Rights) Act, 2019",
+                    description: "Protects rights of transgender persons.",
+                    keyPoints: [
+                        "Recognition of transgender identity",
+                        "Certificate of identity",
+                        "Prohibition of discrimination",
+                        "Right to education, employment, healthcare",
+                        "Welfare measures"
+                    ]
+                },
+                {
+                    name: "Muslim Women (Protection of Rights on Marriage) Act, 2019",
+                    description: "Declares instant triple talaq (talaq-e-biddat) illegal.",
+                    keyPoints: [
+                        "Triple talaq void and illegal",
+                        "Criminal offense: up to 3 years imprisonment",
+                        "Subsistence allowance for wife and children",
+                        "Custody of minor children to wife"
+                    ]
+                }
+            ]
+        };
+
+        // Initialize the sidebar with law categories
+        function initializeLawCategories() {
+            const container = document.getElementById('lawCategories');
+            
+            for (const [category, laws] of Object.entries(indianLaws)) {
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'law-category';
+                
+                const categoryTitle = document.createElement('div');
+                categoryTitle.className = 'category-title';
+                categoryTitle.innerHTML = `${category} <span>▼</span>`;
+                categoryTitle.onclick = () => toggleCategory(categoryDiv);
+                
+                const lawsList = document.createElement('div');
+                lawsList.className = 'category-laws';
+                
+                laws.forEach(law => {
+                    const lawItem = document.createElement('div');
+                    lawItem.className = 'law-item';
+                    lawItem.textContent = law.name;
+                    lawItem.onclick = () => showLawDetails(law);
+                    lawsList.appendChild(lawItem);
+                });
+                
+                categoryDiv.appendChild(categoryTitle);
+                categoryDiv.appendChild(lawsList);
+                container.appendChild(categoryDiv);
+            }
+        }
+
+        function toggleCategory(categoryDiv) {
+            const lawsList = categoryDiv.querySelector('.category-laws');
+            const arrow = categoryDiv.querySelector('.category-title span');
+            
+            if (lawsList.classList.contains('active')) {
+                lawsList.classList.remove('active');
+                arrow.textContent = '▼';
+            } else {
+                lawsList.classList.add('active');
+                arrow.textContent = '▲';
+            }
+        }
+
+        function showLawDetails(law) {
+            const details = `
+                <strong>${law.name}</strong><br><br>
+                <div class="law-details">
+                    <h4>📋 Description:</h4>
+                    ${law.description}<br><br>
+                    <h4>🔑 Key Points:</h4>
+                    <ul>
+                        ${law.keyPoints.map(point => `<li>${point}</li>`).join('')}
+                    </ul>
+                </div>
+                <br>
+                Do you have any specific questions about this law?
+            `;
+            addMessage(details, 'assistant');
+        }
+
+        function searchLaws() {
+            const searchTerm = document.getElementById('lawSearch').value.toLowerCase();
+            const lawItems = document.querySelectorAll('.law-item');
+            
+            lawItems.forEach(item => {
+                const lawName = item.textContent.toLowerCase();
+                if (lawName.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    item.parentElement.classList.add('active');
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // If search is empty, reset all
+            if (searchTerm === '') {
+                lawItems.forEach(item => {
+                    item.style.display = 'block';
+                    item.parentElement.classList.remove('active');
+                });
+            }
+        }
+
+        const chatMessages = document.getElementById('chatMessages');
+        const userInput = document.getElementById('userInput');
+        const sendBtn = document.getElementById('sendBtn');
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function askQuestion(question) {
+            userInput.value = question;
+            sendMessage();
+        }
+
+        function sendMessage() {
+            const message = userInput.value.trim();
+            if (!message) return;
+
+            addMessage(message, 'user');
+            userInput.value = '';
+            sendBtn.disabled = true;
+
+            showTyping();
+
+            // Process the question and provide relevant answer
+            setTimeout(() => {
+                hideTyping();
+                const response = generateResponse(message);
+                addMessage(response, 'assistant');
+                sendBtn.disabled = false;
+            }, 1500);
+        }
+
+        function generateResponse(question) {
+            const q = question.toLowerCase();
+            
+            // Search through all laws for relevant information
+            let response = '';
+            
+            // Check for specific law mentions or keywords
+            for (const [category, laws] of Object.entries(indianLaws)) {
+                for (const law of laws) {
+                    if (q.includes(law.name.toLowerCase()) || 
+                        law.name.toLowerCase().includes(q) ||
+                        law.keyPoints.some(point => q.includes(point.toLowerCase().substring(0, 20)))) {
+                        
+                        response = `
+                            <strong>📚 ${law.name}</strong><br><br>
+                            <div class="law-details">
+                                <h4>Description:</h4>
+                                ${law.description}<br><br>
+                                <h4>Key Points:</h4>
+                                <ul>
+                                    ${law.keyPoints.slice(0, 5).map(point => `<li>${point}</li>`).join('')}
+                                </ul>
+                            </div>
+                            <br>
+                            Would you like more specific information about any particular aspect?
+                        `;
+                        return response;
+                    }
+                }
+            }
+            
+            // Keyword-based responses
+            if (q.includes('fundamental right') || q.includes('article 14') || q.includes('article 19') || q.includes('article 21')) {
+                return `
+                    <strong>🇮🇳 Fundamental Rights under Indian Constitution</strong><br><br>
+                    <div class="law-details">
+                        Part III of the Constitution (Articles 12-35) guarantees Fundamental Rights:<br><br>
+                        <ul>
+                            <li><strong>Right to Equality (Articles 14-18):</strong> Equality before law, prohibition of discrimination, equality of opportunity in public employment, abolition of untouchability, abolition of titles</li>
+                            <li><strong>Right to Freedom (Articles 19-22):</strong> Speech and expression, assembly, association, movement, residence, profession, protection in case of arrest and detention</li>
+                            <li><strong>Right against Exploitation (Articles 23-24):</strong> Prohibition of human trafficking, forced labor, child labor</li>
+                            <li><strong>Right to Freedom of Religion (Articles 25-28):</strong> Freedom of conscience, practice and propagation of religion</li>
+                            <li><strong>Cultural and Educational Rights (Articles 29-30):</strong> Protection of minorities' interests, right to establish educational institutions</li>
+                            <li><strong>Right to Constitutional Remedies (Article 32):</strong> Right to move Supreme Court for enforcement of Fundamental Rights</li>
+                        </ul>
+                    </div>
+                    <br>
+                    These rights can only be suspended during National Emergency (except Articles 20 and 21).
+                `;
+            }
+            
+            if (q.includes('498a') || q.includes('dowry') || q.includes('cruelty')) {
+                return `
+                    <strong>⚖️ Section 498A IPC - Cruelty by Husband or Relatives</strong><br><br>
+                    <div class="law-details">
+                        <h4>What it covers:</h4>
+                        Whoever, being the husband or the relative of the husband of a woman, subjects such woman to cruelty shall be punished with imprisonment up to 3 years and fine.<br><br>
+                        <h4>"Cruelty" means:</h4>
+                        <ul>
+                            <li>Any willful conduct likely to drive the woman to commit suicide or cause grave injury</li>
+                            <li>Harassment for dowry demands</li>
+                            <li>Physical or mental torture</li>
+                        </ul>
+                        <h4>Key Points:</h4>
+                        <ul>
+                            <li>Cognizable (police can arrest without warrant) and non-bailable offense</li>
+                            <li>Complaint can be filed by the woman or her relative</li>
+                            <li>Related to Section 304B (Dowry Death)</li>
+                            <li>Often misused, Supreme Court has issued guidelines to prevent abuse</li>
+                        </ul>
+                    </div>
+                `;
+            }
+            
+            if (q.includes('gst') || q.includes('goods and service')) {
+                return `
+                    <strong>💰 Goods and Services Tax (GST)</strong><br><br>
+                    <div class="law-details">
+                        <h4>What is GST?</h4>
+                        GST is a comprehensive indirect tax on manufacture, sale and consumption of goods and services. It replaced multiple indirect taxes.<br><br>
+                        <h4>Components:</h4>
+                        <ul>
+                            <li><strong>CGST:</strong> Central GST (intra-state supplies)</li>
+                            <li><strong>SGST:</strong> State GST (intra-state supplies)</li>
+                            <li><strong>IGST:</strong> Integrated GST (inter-state supplies and imports)</li>
+                            <li><strong>UTGST:</strong> Union Territory GST</li>
+                        </ul>
+                        <h4>Tax Rates:</h4>
+                        <ul>
+                            <li>0% - Essential items (food grains, milk)</li>
+                            <li>5% - Items of mass consumption</li>
+                            <li>12% - Standard goods</li>
+                            <li>18% - Most goods and services</li>
+                            <li>28% - Luxury items, sin goods</li>
+                        </ul>
+                        <h4>Registration:</h4>
+                        Mandatory if turnover exceeds ₹40 lakhs (₹20 lakhs for special category states)<br><br>
+                        <h4>Input Tax Credit:</h4>
+                        Businesses can claim credit of GST paid on inputs to reduce output tax liability
+                    </div>
+                `;
+            }
+            
+            if (q.includes('fir') || q.includes('first information report') || q.includes('file complaint')) {
+                return `
+                    <strong>🚔 How to File an FIR (First Information Report)</strong><br><br>
+                    <div class="law-details">
+                        <h4>What is FIR?</h4>
+                        FIR is the first written document prepared by police when they receive information about a cognizable offense (serious crimes where police can arrest without warrant).<br><br>
+                        <h4>How to File:</h4>
+                        <ol>
+                            <li><strong>Visit Police Station:</strong> Go to the nearest police station in whose jurisdiction the offense occurred</li>
+                            <li><strong>Oral or Written:</strong> You can give information orally or in writing. If oral, police will write it down</li>
+                            <li><strong>Free Copy:</strong> You are entitled to a free copy of the FIR (Section 154 CrPC)</li>
+                            <li><strong>Sign the FIR:</strong> Read and sign the FIR</li>
+                        </ol>
+                        <h4>If Police Refuse to Register FIR:</h4>
+                        <ul>
+                            <li>Send written complaint by registered post to Superintendent of Police</li>
+                            <li>Approach the Judicial Magistrate under Section 156(3) CrPC</li>
+                            <li>File complaint to State Human Rights Commission</li>
+                        </ul>
+                        <h4>Online FIR:</h4>
+                        Many states now allow online FIR registration for certain offenses through their police websites
+                        <h4>Important:</h4>
+                        <ul>
+                            <li>FIR can be filed for cognizable offenses only</li>
+                            <li>For non-cognizable offenses, file a complaint to magistrate</li>
+                            <li>Zero FIR can be filed at any police station, which will transfer to correct jurisdiction</li>
+                        </ul>
+                    </div>
+                `;
+            }
+            
+            if (q.includes('consumer') || q.includes('complaint') || q.includes('deficiency')) {
+                return `
+                    <strong>🛒 Consumer Rights and Filing Consumer Complaint</strong><br><br>
+                    <div class="law-details">
+                        <h4>Consumer Rights (Consumer Protection Act, 2019):</h4>
+                        <ol>
+                            <li><strong>Right to Safety:</strong> Protection against hazardous goods</li>
+                            <li><strong>Right to Information:</strong> Complete information about quality, quantity, potency, purity, standard and price</li>
+                            <li><strong>Right to Choice:</strong> Access to variety of goods at competitive prices</li>
+                            <li><strong>Right to be Heard:</strong> Consumer interests represented in forums</li>
+                            <li><strong>Right to Redressal:</strong> Compensation for defective goods/services</li>
+                            <li><strong>Right to Consumer Education:</strong> Awareness about rights</li>
+                        </ol>
+                        <h4>How to File Consumer Complaint:</h4>
+                        <ul>
+                            <li><strong>District Forum:</strong> For claims up to ₹1 crore</li>
+                            <li><strong>State Commission:</strong> For claims ₹1-10 crores</li>
+                            <li><strong>National Commission:</strong> For claims above ₹10 crores</li>
+                        </ul>
+                        <h4>Documents Required:</h4>
+                        <ul>
+                            <li>Purchase bill/receipt</li>
+                            <li>Warranty/guarantee card</li>
+                            <li>Correspondence with seller/manufacturer</li>
+                            <li>Medical bills (if applicable)</li>
+                        </ul>
+                        <h4>Time Limit:</h4>
+                        Within 2 years from date of cause of action<br><br>
+                        <h4>Online Complaint:</h4>
+                        Visit https://edaakhil.nic.in for e-filing
+                    </div>
+                `;
+            }
+            
+            // Default response with general legal guidance
+            return `
+                I can help you with information about Indian laws. Your question seems to be about <span class="highlight">"${question}"</span>.<br><br>
+                
+                I have comprehensive information about:
+                <ul>
+                    <li><strong>Constitutional Law</strong> - Fundamental Rights, Directive Principles, Constitutional Amendments</li>
+                    <li><strong>Criminal Law</strong> - IPC, CrPC, Evidence Act, Special Criminal Laws</li>
+                    <li><strong>Civil Law</strong> - Contracts, Property, Family Law</li>
+                    <li><strong>Corporate Law</strong> - Companies Act, LLP, Partnership</li>
+                    <li><strong>Tax Laws</strong> - Income Tax, GST, Customs</li>
+                    <li><strong>Labour Laws</strong> - Employment rights, PF, ESI, Industrial laws</li>
+                    <li><strong>Consumer Protection</strong> - Consumer rights and complaints</li>
+                    <li><strong>Cyber Laws</strong> - IT Act, Data Protection</li>
+                </ul>
+                <br>
+                Could you please be more specific about which law or legal issue you'd like to know about? You can also browse laws from the sidebar.<br><br>
+                <strong>Examples of specific questions:</strong><br>
+                • "What is Section 420 IPC?"<br>
+                • "How to register a company in India?"<br>
+                • "What are the grounds for divorce in India?"<br>
+                • "How much GST on online services?"<br>
+                • "What are my rights as a tenant?"
+            `;
+        }
+
+        function addMessage(text, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}-message`;
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.textContent = type === 'user' ? '👤' : '⚖️';
+            
+            const content = document.createElement('div');
+            content.className = 'message-content';
+            content.innerHTML = text;
+            
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(content);
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showTyping() {
+            const typingDiv = document.createElement('div');
+            typingDiv.id = 'typingIndicator';
+            typingDiv.className = 'message assistant-message';
+            typingDiv.innerHTML = `
+                <div class="message-avatar">⚖️</div>
+                <div class="typing-indicator active">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            `;
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function hideTyping() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        // Initialize on page load
+        window.onload = function() {
+            initializeLawCategories();
+        };
+    </script>
+</body>
+</html>
